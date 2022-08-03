@@ -75,7 +75,7 @@ if __name__ == "__main__":
             displayFolders()
             displayFiles()
         elif choose == 2:
-            copy_content(r"C:\\Users\\dell\\OneDrive\\Desktop\\Trans\\Transfer")
+            copy_content(r"C:\\path where you want to copy content")
         elif choose == 3:
             print("\n[i] Thank you......:)")
             break
