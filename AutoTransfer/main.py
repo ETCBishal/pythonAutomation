@@ -1,8 +1,9 @@
 
 '''
-+-------------------+
-| AutoFileTransferer|
-+-------------------+
++---------------------------------+
+| ContentTransfererToExternaldrive|
+|        Version 2.0              |
++---------------------------------+
 by Bishal jaiswal Copyright (c) 2022
 '''
 
@@ -42,40 +43,82 @@ def copy_content(distPath):
     folders = []
     files = []
 
-    action = int(
-        input("\n[1] Transfer Folders\n[2] Transfer Files\n Choos your action> "))
-    if action == 1:
-        displayFolders()
-        if len(Folders) > 0:
-            count = int(input("How many Folders you want to transfer> "))
-            for i in range(count):
-                chooseFolders = int(input("Choos the folders> "))
-                folders.append(Folders[chooseFolders])
-                os.replace(folders[i], f"{distPath}/{folders[i]}")
-        else:
-            print("[!] No Folders Found !")
+    FOLDER = [folder for folder in os.listdir() if not os.path.isfile(folder)]
 
-    if action == 2:
-        displayFiles()
-        if len(Files) > 0:
-            cnt = int(input("How many Files you want to transfer> "))
-            for j in range(cnt):
-                chooseFiles = int(input("Choose the files> "))
-                files.append(Files[chooseFiles])
-                os.replace(files[j], f"{distPath}/{files[j]}")
-        else:
-            print("[!] No Files Found")
+    if len(folders)>0:
+        action = int(
+            input("\n[1] Transfer Folders\n[2] Transfer Files\n Choose your action> "))
+        if action == 1:
+            displayFolders()
+            if len(Folders) > 0:
+                count = int(input("How many Folders you want to transfer> "))
+                for i in range(count):
+                    chooseFolders = int(input("Choose the folders> "))
+                    folders.append(Folders[chooseFolders])
+                    os.replace(folders[i], f"{distPath}/{folders[i]}")
+            else:
+                print("[!] No Folders Found !")
+
+        if action == 2:
+            displayFiles()
+            if len(Files) > 0:
+                cnt = int(input("How many Files you want to transfer> "))
+                for j in range(cnt):
+                    chooseFiles = int(input("Choose the files> "))
+                    files.append(Files[chooseFiles])
+                    os.replace(files[j], f"{distPath}/{files[j]}")
+            else:
+                print("[!] No Files Found")
+
+    elif len(FOLDER)>0:
+        action = int(
+            input("\n[1] Transfer Folders\n[2] Transfer Files\n Choose your action> "))
+        if action == 1:
+            displayFolders()
+            if len(Folders) > 0:
+                count = int(input("How many Folders you want to transfer> "))
+                for i in range(count):
+                    chooseFolders = int(input("Choos the folders> "))
+                    folders.append(Folders[chooseFolders])
+                    os.replace(folders[i], f"{distPath}/{folders[i]}")
+            else:
+                print("[!] No Folders Found !")
+
+        if action == 2:
+            displayFiles()
+            if len(Files) > 0:
+                cnt = int(input("How many Files you want to transfer> "))
+                for j in range(cnt):
+                    chooseFiles = int(input("Choose the files> "))
+                    files.append(Files[chooseFiles])
+                    os.replace(files[j], f"{distPath}/{files[j]}")
+            else:
+                print("[!] No Files Found") 
+
+    else:
+        print("[i] No Folder in the list.......")
+        import sys
+        sys.exit()
+
+def copyFolder(destination:str) ->None:
+    import shutil
+    print("[i] wait...processing....!")
+    shutil.move(src=r"C:\Users\dell\OneDrive\Desktop\AutoTransfer\Transfer",dst = destination)  # copying folder to the located path
+    print(f"[Transfer] folder is moved to [{destination}]")
 
 
 if __name__ == "__main__":
     while True:
         choose = int(input(
-            "\n[1] Display content\n[2] Copy content\n[3] To EXIT\nChoos the options> "))
+            "\n[1] Display content\n[2] Copy content\n[3] To EXIT\nChoose the options> "))
         if choose == 1:
             displayFolders()
             displayFiles()
         elif choose == 2:
-            copy_content(r"C:\\path where you want to copy content")
+            copy_content(r"C:\Users\dell\OneDrive\Desktop\AutoTransfer\Transfer")
+            destination = input("Destination? -> ")
+            copyFolder(destination)
+            break
         elif choose == 3:
             print("\n[i] Thank you......:)")
             break
